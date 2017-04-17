@@ -1,6 +1,5 @@
 package com.edu.cnu.poker;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -8,7 +7,7 @@ import lombok.Data;
  */
 
 @Data
-public class Card {
+public class Card implements Comparable<Card>{
 
     private int rank;
     private Suit suit;
@@ -22,4 +21,7 @@ public class Card {
         }
     }
 
+    public int compareTo(Card o) {
+        return this.getRank() - o.getRank();
+    }
 }
