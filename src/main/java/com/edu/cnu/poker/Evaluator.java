@@ -14,6 +14,8 @@ public class Evaluator {
 
         if(isFULLHOUSE(cardList)) return "FULLHOUSE";
 
+        if(isTWOPAIR(cardList)) return "TWOPAIR";
+
         return "NOTHING";
     }
 
@@ -40,7 +42,8 @@ public class Evaluator {
 
     public boolean isFULLHOUSE(List<Card> cardList) {
         Map<Integer, Integer> tempMap = new HashMap<Integer, Integer>();
-        boolean isFullHouse = false;
+        int two = 0;
+        int three = 0;
 
         for(Card card : cardList) {
             if (tempMap.containsKey(card.getRank())) {
@@ -54,15 +57,41 @@ public class Evaluator {
 
         for ( Integer key : tempMap.keySet()) {
             if (tempMap.get(key) == 2 ) {
-                isFullHouse = true;
+                two++;
             }else if(tempMap.get(key) == 3 ) {
-                isFullHouse = true;
-            }else {
-                isFullHouse = false;
+                three++;
             }
         }
-        return isFullHouse;
+        if((two == 1) && (three == 1)) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
+    public boolean isTWOPAIR(List<Card> cardList) {
+        Map<Integer, Integer> tempMap = new HashMap<Integer, Integer>();
+        int pair = 0;
 
+        for(Card card : cardList) {
+            if (tempMap.containsKey(card.getRank())) {
+                Integer count = tempMap.get(card.getRank());
+                count = new Integer(count.intValue() + 1);
+                tempMap.put(card.getRank(), count);
+            } else {
+                tempMap.put(card.getRank(), new Integer(1));
+            }
+        }
+
+        for ( Integer key : tempMap.keySet()) {
+            if (tempMap.get(key) == 2 ) {
+                pair++;
+            }
+        }
+        if(pair == 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -26,6 +26,19 @@ public class EvaluatorTest {
         assertThat(result, is("FLUSH"));
     }
     @Test
+    public void PAIR_가두개면_투페어다() {
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(1, Suit.CLUBS),
+                new Card(1, Suit.CLUBS),
+                new Card(4, Suit.HEARTS),
+                new Card(4, Suit.CLUBS),
+                new Card(2, Suit.CLUBS)
+        );
+        String result = evaluator.evaluate(cardList);
+        assertThat(result, is("TWOPAIR"));
+    }
+    @Test
     public void 원페어와_트리플이_동시에있으면_풀하우스다() {
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
@@ -72,7 +85,7 @@ public class EvaluatorTest {
                 new Card(11, Suit.HEARTS),
                 new Card(12, Suit.HEARTS),
                 new Card(13, Suit.HEARTS),
-                new Card(14, Suit.HEARTS)
+                new Card(1, Suit.HEARTS)
         );
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("ROYALFLUSH"));
