@@ -1,5 +1,7 @@
 package com.edu.cnu.poker;
 
+import com.sun.deploy.nativesandbox.NativeSandboxBroker;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +29,26 @@ public class Evaluator {
                 return "FLUSH";
             }
          }
+
+        Map<Integer,Integer> tempMap2 = new HashMap<Integer, Integer>();
+
+        for(Card card : cardList) {
+                if (tempMap2.containsKey(card.getRank())) {
+                Integer count = tempMap2.get(card.getRank());
+                count = new Integer(count + 1 );
+                tempMap2.put(card.getRank(),count);
+            } else {
+                tempMap2.put(card.getRank(), new Integer(1));
+            }
+        }
+
+        for(Integer key : tempMap2.keySet()){
+            if(tempMap2.get(key) == 3){
+                return "TRIPLE";
+            }
+        }
+
+
 
          return "NOTHING";
     }
