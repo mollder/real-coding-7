@@ -10,9 +10,16 @@ import java.util.Map;
 public class Evaluator {
 
     public String evaluate(List<Card> cardList) {
+        if (isOnePair(cardList)) return "ONEPAIR";
+        if (isFlush(cardList)) return "FLUSH";
+
+        return "NOTHING";
+    }
+
+    public boolean isFlush(List<Card> cardList) {
         Map<Suit, Integer> tempMap = new HashMap<Suit, Integer>();
 
-        for(Card card : cardList) {
+        for (Card card : cardList) {
             if (tempMap.containsKey(card.getSuit())) {
                 Integer count = tempMap.get(card.getSuit());
                 count = new Integer(count.intValue() + 1);
@@ -22,21 +29,35 @@ public class Evaluator {
             }
         }
 
-        for ( Suit key : tempMap.keySet()) {
+        for (Suit key : tempMap.keySet()) {
             if (tempMap.get(key) == 5) {
-                return "FLUSH";
+                return true;
             }
-         }
-
-         return "NOTHING";
-    }
-    public String evaluateTwoPair(List<Card> cardList)
-    {
-        for (Card card : cardList)
-        {
-            int compareA = 0;
-            int compareB = 0;
-            if()
         }
+        return false;
+    }
+
+    public boolean isOnePair(List<Card> cardList) {
+        Map<Integer, Integer> tempMap = new HashMap<Integer, Integer>();
+        boolean isOnePair = false;
+
+        for (Card card : cardList) {
+            if (tempMap.containsKey(card.getRank())) {
+                Integer count = tempMap.get(card.getRank());
+                count = new Integer(count.intValue() + 1);
+                tempMap.put(card.getRank(), count);
+            } else {
+                tempMap.put(card.getRank(), new Integer(1));
+            }
+        }
+
+        for (Integer key : tempMap.keySet()) {
+            if (tempMap.get(key) == 2) {
+                isOnePair = true;
+            }
+        }
+        return isOnePair;
     }
 }
+
+
