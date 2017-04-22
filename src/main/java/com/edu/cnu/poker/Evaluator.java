@@ -15,10 +15,30 @@ public class Evaluator {
 
         if (isFLUSH(cardList)) return "FLUSH";
         if (isTRIPLE(cardList)) return "TRIPLE";
-
-
+        if (isFORCARD(cardList)) return "FOURCARD";
         return "NOTHING";
     }
+
+    private boolean isFORCARD(List<Card> cardList) {
+        Map<Integer, Integer> tempMap = new HashMap<Integer, Integer>();
+
+        for (Card card : cardList) {
+            if (tempMap.containsKey(card.getRank())) {
+                Integer count = tempMap.get(card.getRank());
+                tempMap.put(card.getRank(), count + 1);
+            } else {
+                tempMap.put(card.getRank(), new Integer(1));
+            }
+        }
+
+        for (Integer key : tempMap.keySet()) {
+            if (tempMap.get(key) == 4) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     private boolean isTRIPLE(List<Card> cardList) {
         Map<Integer,Integer> tempMap = new HashMap<Integer, Integer>();
