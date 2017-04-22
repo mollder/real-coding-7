@@ -14,20 +14,19 @@ public class Evaluator {
     public String evaluate(List<Card> cardList) {
 
         if (isFLUSH(cardList)) return "FLUSH";
-        if (isFRIPLE(cardList)) return "TRIPLE";
+        if (isTRIPLE(cardList)) return "TRIPLE";
 
 
         return "NOTHING";
     }
 
-    private boolean isFRIPLE(List<Card> cardList) {
+    private boolean isTRIPLE(List<Card> cardList) {
         Map<Integer,Integer> tempMap = new HashMap<Integer, Integer>();
 
         for(Card card : cardList) {
                 if (tempMap.containsKey(card.getRank())) {
                 Integer count = tempMap.get(card.getRank());
-                count = new Integer(count + 1 );
-                tempMap.put(card.getRank(),count);
+                tempMap.put(card.getRank(),count+1);
             } else {
                 tempMap.put(card.getRank(), new Integer(1));
             }
@@ -47,8 +46,7 @@ public class Evaluator {
         for(Card card : cardList) {
             if (tempMap.containsKey(card.getSuit())) {
                 Integer count = tempMap.get(card.getSuit());
-                count = new Integer(count.intValue() + 1);
-                tempMap.put(card.getSuit(), count);
+                tempMap.put(card.getSuit(), count+1);
             } else {
                 tempMap.put(card.getSuit(), new Integer(1));
             }
