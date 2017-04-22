@@ -30,4 +30,13 @@ public class Evaluator {
 
          return "NOTHING";
     }
+    public String evaluateTwoPair(List<Card> cardList)
+    {
+        for (Card card : cardList)
+        {
+            int compareA = 0;
+            int compareB = 0;
+            if()
+        }
+    }
 }

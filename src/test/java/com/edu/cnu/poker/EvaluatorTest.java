@@ -25,4 +25,17 @@ public class EvaluatorTest {
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("FLUSH"));
     }
+    @Test
+    public void 랭크가_2개가동일한_각각1개씩있으면_투페어다() {
+    {
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(1, Suit.CLUBS),
+                new Card(2, Suit.HEARTS),
+                new Card(1, Suit.SPADES),
+                new Card(2, Suit.DIAMONDS)
+            );
+        String result = evaluator.evaluate(cardList);
+        assertThat(result, is("TwoPair"));
+    }
 }
