@@ -25,4 +25,18 @@ public class EvaluatorTest {
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("FLUSH"));
     }
+
+    @Test
+    public void 숫자_다섯개가_연속이면_스트레이트다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(1, Suit.CLUBS),
+                new Card(2, Suit.DIAMONDS),
+                new Card(3, Suit.SPADES),
+                new Card(4, Suit.HEARTS),
+                new Card(5, Suit.CLUBS)
+        );
+        String result = evaluator.evaluate(cardList);
+        assertThat(result, is("STRAIGHT"));
+    }
 }
