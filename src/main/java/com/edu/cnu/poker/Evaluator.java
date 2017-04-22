@@ -16,7 +16,7 @@ public class Evaluator {
         if (isFLUSH(cardList)) return "FLUSH";
         if (isTRIPLE(cardList)) return "TRIPLE";
         if (isFORCARD(cardList)) return "FOURCARD";
-        return "NOTHING";
+        return "HIGHCARD";
     }
 
     private boolean isFORCARD(List<Card> cardList) {
