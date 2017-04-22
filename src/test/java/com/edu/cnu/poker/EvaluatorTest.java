@@ -38,7 +38,7 @@ public class EvaluatorTest {
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("FULLHOUSE"));
     }
-    @Test
+    /*@Test
     public void 같은카드가_4개면_포카드다() {
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
@@ -76,5 +76,5 @@ public class EvaluatorTest {
         );
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("ROYALFLUSH"));
-    }
+    }*/
 }
