@@ -25,4 +25,17 @@ public class EvaluatorTest {
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("FLUSH"));
     }
+    @Test
+    public void 원페어와_트리플이_동시에있으면_풀하우스다() {
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(1, Suit.CLUBS),
+                new Card(1, Suit.DIAMONDS),
+                new Card(3, Suit.CLUBS),
+                new Card(3, Suit.HEARTS),
+                new Card(3, Suit.SPADES)
+        );
+        String result = evaluator.evaluate(cardList);
+        assertThat(result, is("FULLHOUSE"));
+    }
 }
