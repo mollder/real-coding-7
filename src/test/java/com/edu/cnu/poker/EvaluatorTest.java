@@ -51,7 +51,22 @@ public class EvaluatorTest {
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("FULLHOUSE"));
     }
-    /*@Test
+
+    @Test
+    public void 값이_3개가동일하면_트리플이다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(7,Suit.CLUBS),
+                new Card(7,Suit.DIAMONDS),
+                new Card(7,Suit.HEARTS),
+		new Card(8,Suit.HEARTS),
+		new Card(3,Suit,CLUBS)
+        );
+        String result = evaluator.evaluate(cardList);
+        assertThat(result, is("TRIPLE"));
+    }
+
+    @Test
     public void 같은카드가_4개면_포카드다() {
         Evaluator evaluator = new Evaluator();
         List<Card> cardList = Arrays.asList(
@@ -64,6 +79,7 @@ public class EvaluatorTest {
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("FOURCARD"));
     }
+
     @Test
     public void 같은_짝패의_카드5장이_연속되면_스트레이트플러시다() {
         Evaluator evaluator = new Evaluator();
@@ -89,7 +105,7 @@ public class EvaluatorTest {
         );
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("ROYALFLUSH"));
-    }*/
+    }
 
     @Test
     public void 랭크가_2개가동일한_1개있으면_원페어다() {
@@ -102,5 +118,20 @@ public class EvaluatorTest {
             String result = evaluator.evaluate(cardList);
             assertThat(result, is("ONEPAIR"));
         }
+
+    @Test
+    public void 어떤_조합도_가능하지_않으면_하이카드다(){
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(5, Suit.CLUBS),
+                new Card(13, Suit.DIAMONDS),
+                new Card(1, Suit.SPADES),
+                new Card(12, Suit.HEARTS),
+                new Card(7, Suit.SPADES),
+                new Card(6, Suit.HEARTS),
+                new Card(2, Suit.SPADES)
+        );
+        String result = evaluator.evaluate(cardList);
+        assertThat(result, is("HIGHCARD"));
     }
 }

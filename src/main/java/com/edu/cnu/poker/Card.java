@@ -17,9 +17,9 @@ public class Card implements Comparable<Card>{
         this.suit = suit;
 
         if(rank > 13) {
-            throw new NoSuchRankException();
-        }
+        throw new NoSuchRankException();
     }
+}
 
     public int compareTo(Card o) {
         return this.getRank() - o.getRank();
