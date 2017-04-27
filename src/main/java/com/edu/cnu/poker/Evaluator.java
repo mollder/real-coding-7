@@ -10,19 +10,23 @@ import java.util.Map;
 public class Evaluator {
 
     public String evaluate(List<Card> cardList) {
+
         if (isFLUSH(cardList)) return "FLUSH";
 
         if(isFULLHOUSE(cardList)) return "FULLHOUSE";
 
         if(isTWOPAIR(cardList)) return "TWOPAIR";
 
+        if (isOnePair(cardList)) return "ONEPAIR";
+
         return "NOTHING";
     }
+
 
     public boolean isFLUSH(List<Card> cardList) {
         Map<Suit, Integer> tempMap = new HashMap<Suit, Integer>();
 
-        for(Card card : cardList) {
+        for (Card card : cardList) {
             if (tempMap.containsKey(card.getSuit())) {
                 Integer count = tempMap.get(card.getSuit());
                 count = new Integer(count.intValue() + 1);
@@ -32,7 +36,7 @@ public class Evaluator {
             }
         }
 
-        for ( Suit key : tempMap.keySet()) {
+        for (Suit key : tempMap.keySet()) {
             if (tempMap.get(key) == 5) {
                 return true;
             }

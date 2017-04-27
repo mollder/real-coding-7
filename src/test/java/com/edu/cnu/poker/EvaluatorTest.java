@@ -90,4 +90,17 @@ public class EvaluatorTest {
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("ROYALFLUSH"));
     }*/
+
+    @Test
+    public void 랭크가_2개가동일한_1개있으면_원페어다() {
+        {
+            Evaluator evaluator = new Evaluator();
+            List<Card> cardList = Arrays.asList(
+                    new Card(1, Suit.CLUBS),
+                    new Card(1, Suit.SPADES)
+            );
+            String result = evaluator.evaluate(cardList);
+            assertThat(result, is("ONEPAIR"));
+        }
+    }
 }
