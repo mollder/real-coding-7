@@ -26,6 +26,30 @@ public class Evaluator {
         return "HIGHCARD";
     }
 
+    private boolean isOnePair(List<Card> cardList) {
+        Map<Integer, Integer> tempMap = new HashMap<Integer, Integer>();
+
+        for(Card card : cardList) {
+            if (tempMap.containsKey(card.getRank())) {
+                Integer count = tempMap.get(card.getRank());
+                count = new Integer(count.intValue() + 1);
+                tempMap.put(card.getRank(), count);
+            } else {
+                tempMap.put(card.getRank(), new Integer(1));
+            }
+        }
+
+        for ( Integer key : tempMap.keySet()) {
+            if (tempMap.get(key) == 2 ) {
+                return true;
+            }
+
+        }
+        return false;
+
+    }
+
+
     private boolean isFORCARD(List<Card> cardList) {
         Map<Integer, Integer> tempMap = new HashMap<Integer, Integer>();
 

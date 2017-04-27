@@ -59,8 +59,8 @@ public class EvaluatorTest {
                 new Card(7,Suit.CLUBS),
                 new Card(7,Suit.DIAMONDS),
                 new Card(7,Suit.HEARTS),
-		new Card(8,Suit.HEARTS),
-		new Card(3,Suit,CLUBS)
+                new Card(8,Suit.HEARTS),
+		        new Card(3,Suit.CLUBS)
         );
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("TRIPLE"));
@@ -94,7 +94,6 @@ public class EvaluatorTest {
         assertThat(result, is("STRAIGHTFLUSH"));
     }
 
-
     @Test
     public void 랭크가_2개가동일한_1개있으면_원페어다() {
         {
@@ -106,7 +105,7 @@ public class EvaluatorTest {
             String result = evaluator.evaluate(cardList);
             assertThat(result, is("ONEPAIR"));
         }
-
+    }
     @Test
     public void 어떤_조합도_가능하지_않으면_하이카드다(){
         Evaluator evaluator = new Evaluator();
