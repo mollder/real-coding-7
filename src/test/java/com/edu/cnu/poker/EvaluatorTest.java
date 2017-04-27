@@ -93,19 +93,7 @@ public class EvaluatorTest {
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("STRAIGHTFLUSH"));
     }
-    @Test
-    public void 같은_짝패의_10에서_에이스까지_카드5장이_연속되면_로열플러시다() {
-        Evaluator evaluator = new Evaluator();
-        List<Card> cardList = Arrays.asList(
-                new Card(10, Suit.HEARTS),
-                new Card(11, Suit.HEARTS),
-                new Card(12, Suit.HEARTS),
-                new Card(13, Suit.HEARTS),
-                new Card(1, Suit.HEARTS)
-        );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("ROYALFLUSH"));
-    }
+
 
     @Test
     public void 랭크가_2개가동일한_1개있으면_원페어다() {
