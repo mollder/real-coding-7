@@ -2,9 +2,11 @@ package com.edu.cnu.poker;
 
 import com.sun.deploy.nativesandbox.NativeSandboxBroker;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Collections;
 
 /**
  * Created by dingue on 2017-04-17.
@@ -14,7 +16,7 @@ public class Evaluator {
     public String evaluate(List<Card> cardList) {
 
         if (isFLUSH(cardList)) return "FLUSH";
-
+        if (isSTRAIGHT(cardList)) return "STRAIGHT";
         if(isFULLHOUSE(cardList)) return "FULLHOUSE";
 
         if(isTWOPAIR(cardList)) return "TWOPAIR";
@@ -25,6 +27,34 @@ public class Evaluator {
         if (isFORCARD(cardList)) return "FOURCARD";
         return "HIGHCARD";
     }
+    private boolean isSTRAIGHT(List<Card> cardList) {
+
+
+        ArrayList<Integer> compare = new ArrayList(cardList.size());
+        int prev = -1;
+        for(Card card : cardList) {
+
+            compare.add(card.getRank());
+        }
+        Collections.sort(compare);
+        for(int i=0;i<compare.size();i++)
+        {
+            if(prev == -1 || (prev +1) == compare.get(i))
+            {
+                prev = compare.get(i);
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        return true;
+
+        }
+
+
+
 
     private boolean isOnePair(List<Card> cardList) {
         Map<Integer, Integer> tempMap = new HashMap<Integer, Integer>();

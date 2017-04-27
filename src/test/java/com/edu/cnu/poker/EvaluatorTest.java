@@ -121,4 +121,19 @@ public class EvaluatorTest {
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("HIGHCARD"));
     }
+    @Test
+    public void 카드_다섯장이연속되면_스트레이트이다()
+    {
+        Evaluator evaluator = new Evaluator();
+        List<Card> cardList = Arrays.asList(
+                new Card(3, Suit.DIAMONDS),
+                new Card(4, Suit.HEARTS),
+                new Card(5, Suit.DIAMONDS),
+                new Card(6, Suit.HEARTS),
+                new Card(7, Suit.HEARTS)
+        );
+        String result = evaluator.evaluate(cardList);
+        assertThat(result, is("STRAIGHT"));
+    }
+
 }
