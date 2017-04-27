@@ -14,9 +14,10 @@ import java.util.Collections;
 public class Evaluator {
 
     public String evaluate(List<Card> cardList) {
-
+        if (isSTRAIGHTFLUSH(cardList)) return "STRAIGHTFLUSH";
         if (isFLUSH(cardList)) return "FLUSH";
         if (isSTRAIGHT(cardList)) return "STRAIGHT";
+
         if(isFULLHOUSE(cardList)) return "FULLHOUSE";
 
         if(isTWOPAIR(cardList)) return "TWOPAIR";
@@ -27,11 +28,57 @@ public class Evaluator {
         if (isFORCARD(cardList)) return "FOURCARD";
         return "HIGHCARD";
     }
+
+    private boolean isSTRAIGHTFLUSH(List<Card> cardList) {
+        Map<Suit, Integer> tempMap = new HashMap<Suit, Integer>();
+        ArrayList<Integer> compare = new ArrayList(cardList.size());
+        int strcount = 0;
+        for (Card card : cardList) {
+            compare.add(card.getRank());
+
+            if (tempMap.containsKey(card.getSuit())) {
+                Integer count = tempMap.get(card.getSuit());
+                tempMap.put(card.getSuit(), count+1);
+            }
+            else {
+                tempMap.put(card.getSuit(), new Integer(1));
+
+            }
+        }
+
+        for (Suit key : tempMap.keySet()) {
+            if (tempMap.get(key) >= 5) {
+                Collections.sort(compare);
+                for(int i=0;i<compare.size();i++)
+                {
+                    int str = compare.get(i);
+                    for(int j=i+1;j<compare.size();j++)
+                    {
+                        if(compare.get(j)==null) break;
+                        else if((str+1)!=compare.get(j)) break;
+                        else {
+                            str = compare.get(j);
+                            strcount++;
+                        }
+                    }
+                    if(strcount>3) return true;
+                    else strcount = 0;
+                }
+                return false;
+
+
+            }
+        }
+        return false;
+
+    }
+
     private boolean isSTRAIGHT(List<Card> cardList) {
 
 
         ArrayList<Integer> compare = new ArrayList(cardList.size());
-        int prev = -1;
+
+        int count = 0;
         for(Card card : cardList) {
 
             compare.add(card.getRank());
@@ -39,17 +86,21 @@ public class Evaluator {
         Collections.sort(compare);
         for(int i=0;i<compare.size();i++)
         {
-            if(prev == -1 || (prev +1) == compare.get(i))
+            int str = compare.get(i);
+            for(int j=i+1;j<compare.size();j++)
             {
-                prev = compare.get(i);
+                if(compare.get(j)==null) break;
+                else if((str+1)!=compare.get(j)) break;
+                else {
+                    str = compare.get(j);
+                    count++;
+                }
             }
-            else
-            {
-                return false;
-            }
-
+            if(count>3) return true;
+            else count = 0;
         }
-        return true;
+        return false;
+
 
         }
 
@@ -134,7 +185,7 @@ public class Evaluator {
         }
 
         for (Suit key : tempMap.keySet()) {
-            if (tempMap.get(key) == 5) {
+            if (tempMap.get(key) >= 5) {
                 return true;
             }
         }

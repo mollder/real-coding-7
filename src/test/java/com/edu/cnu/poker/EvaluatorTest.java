@@ -88,7 +88,9 @@ public class EvaluatorTest {
                 new Card(4, Suit.HEARTS),
                 new Card(5, Suit.HEARTS),
                 new Card(6, Suit.HEARTS),
-                new Card(7, Suit.HEARTS)
+                new Card(7, Suit.HEARTS),
+                new Card(9, Suit.HEARTS),
+                new Card(9, Suit.CLUBS)
         );
         String result = evaluator.evaluate(cardList);
         assertThat(result, is("STRAIGHTFLUSH"));
