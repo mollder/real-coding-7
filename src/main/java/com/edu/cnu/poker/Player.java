@@ -9,6 +9,7 @@ import lombok.Data;
 public class Player {
     private Hand playerHand;
     private int money;
+    private HandsRank handsRank;
 
     public Player() {
         money = 10000;
