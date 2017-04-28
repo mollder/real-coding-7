@@ -1,7 +1,5 @@
 package com.edu.cnu.poker;
 
-import com.sun.deploy.nativesandbox.NativeSandboxBroker;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,20 +11,24 @@ import java.util.Collections;
  */
 public class Evaluator {
 
-    public String evaluate(List<Card> cardList) {
-        if (isSTRAIGHTFLUSH(cardList)) return "STRAIGHTFLUSH";
-        if (isFLUSH(cardList)) return "FLUSH";
-        if (isSTRAIGHT(cardList)) return "STRAIGHT";
+    public HandsRank evaluate(List<Card> cardList) {
+        if (isSTRAIGHTFLUSH(cardList)) return HandsRank.STRAIGHTFLUSH;
 
-        if(isFULLHOUSE(cardList)) return "FULLHOUSE";
+        if (isFORCARD(cardList)) return HandsRank.FOURCARD;
 
-        if(isTWOPAIR(cardList)) return "TWOPAIR";
+        if(isFULLHOUSE(cardList)) return HandsRank.FULLHOUSE;
 
-        if (isOnePair(cardList)) return "ONEPAIR";
-    
-        if (isTRIPLE(cardList)) return "TRIPLE";
-        if (isFORCARD(cardList)) return "FOURCARD";
-        return "HIGHCARD";
+        if (isFLUSH(cardList)) return HandsRank.FLUSH;
+
+        if (isSTRAIGHT(cardList)) return HandsRank.STRAIGHT;
+
+        if (isTRIPLE(cardList)) return HandsRank.TRIPLE;
+
+        if(isTWOPAIR(cardList)) return HandsRank.TWOPAIR;
+
+        if (isOnePair(cardList)) return HandsRank.ONEPAIR;
+
+        return HandsRank.HIGHCARD;
     }
 
     private boolean isSTRAIGHTFLUSH(List<Card> cardList) {
@@ -100,9 +102,7 @@ public class Evaluator {
             else count = 0;
         }
         return false;
-
-
-        }
+    }
 
 
 

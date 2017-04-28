@@ -14,6 +14,7 @@ public class Hand {
     private Deck deck;
     private PokerType pokerType;
     private List<Card> cardList;
+    private double HandRankPoint;
 
     public Hand(Deck deck, PokerType pokerType) {
         this.deck = deck;
@@ -26,5 +27,19 @@ public class Hand {
 
     public int getTotalCard() {
         return cardList.size();
+    }
+
+    public Card highNumCard() {
+        Card HighCard = null;
+        for(Card card : cardList) {
+            if(HighCard != null) {
+                if(HighCard.getRank() < card.getRank())
+                    HighCard = card;
+            }else {
+                HighCard = card;
+            }
+        }
+
+        return HighCard;
     }
 }

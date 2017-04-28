@@ -10,8 +10,6 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/classes" />
   </component>
-<<<<<<< HEAD
-=======
   <component name="masterDetails">
     <states>
       <state key="ProjectJDKs.UI">
@@ -28,5 +26,4 @@
       </state>
     </states>
   </component>
->>>>>>> origin/KCS
 </project>

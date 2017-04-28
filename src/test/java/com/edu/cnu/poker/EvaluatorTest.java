@@ -22,8 +22,8 @@ public class EvaluatorTest {
                 new Card(13, Suit.CLUBS),
                 new Card(2, Suit.CLUBS)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("FLUSH"));
+        HandsRank result = evaluator.evaluate(cardList);
+        assertThat(result, is(HandsRank.FLUSH));
     }
     @Test
     public void PAIR_가두개면_투페어다() {
@@ -35,8 +35,8 @@ public class EvaluatorTest {
                 new Card(4, Suit.CLUBS),
                 new Card(2, Suit.CLUBS)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("TWOPAIR"));
+        HandsRank result = evaluator.evaluate(cardList);
+        assertThat(result, is(HandsRank.TWOPAIR));
     }
     @Test
     public void 원페어와_트리플이_동시에있으면_풀하우스다() {
@@ -48,8 +48,8 @@ public class EvaluatorTest {
                 new Card(3, Suit.HEARTS),
                 new Card(3, Suit.SPADES)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("FULLHOUSE"));
+        HandsRank result = evaluator.evaluate(cardList);
+        assertThat(result, is(HandsRank.FULLHOUSE));
     }
 
     @Test
@@ -62,8 +62,8 @@ public class EvaluatorTest {
                 new Card(8,Suit.HEARTS),
 		        new Card(3,Suit.CLUBS)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("TRIPLE"));
+        HandsRank result = evaluator.evaluate(cardList);
+        assertThat(result, is(HandsRank.TRIPLE));
     }
 
     @Test
@@ -76,8 +76,8 @@ public class EvaluatorTest {
                 new Card(1, Suit.HEARTS),
                 new Card(3, Suit.SPADES)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("FOURCARD"));
+        HandsRank result = evaluator.evaluate(cardList);
+        assertThat(result, is(HandsRank.FOURCARD));
     }
 
     @Test
@@ -92,8 +92,8 @@ public class EvaluatorTest {
                 new Card(9, Suit.HEARTS),
                 new Card(9, Suit.CLUBS)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("STRAIGHTFLUSH"));
+        HandsRank result = evaluator.evaluate(cardList);
+        assertThat(result, is(HandsRank.STRAIGHTFLUSH));
     }
 
     @Test
@@ -104,8 +104,8 @@ public class EvaluatorTest {
                     new Card(1, Suit.CLUBS),
                     new Card(1, Suit.SPADES)
             );
-            String result = evaluator.evaluate(cardList);
-            assertThat(result, is("ONEPAIR"));
+            HandsRank result = evaluator.evaluate(cardList);
+            assertThat(result, is(HandsRank.ONEPAIR));
         }
     }
     @Test
@@ -120,8 +120,8 @@ public class EvaluatorTest {
                 new Card(6, Suit.HEARTS),
                 new Card(2, Suit.SPADES)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("HIGHCARD"));
+        HandsRank result = evaluator.evaluate(cardList);
+        assertThat(result, is(HandsRank.HIGHCARD));
     }
     @Test
     public void 카드_다섯장이연속되면_스트레이트이다()
@@ -134,8 +134,7 @@ public class EvaluatorTest {
                 new Card(6, Suit.HEARTS),
                 new Card(7, Suit.HEARTS)
         );
-        String result = evaluator.evaluate(cardList);
-        assertThat(result, is("STRAIGHT"));
+        HandsRank result = evaluator.evaluate(cardList);
+        assertThat(result, is(HandsRank.STRAIGHT));
     }
-
 }
