@@ -46,6 +46,7 @@ public class Game {
             System.out.println("플레이어의 돈 상태 "+player.getMoney());
             playerHandDrawAndSettingRank(playerHandsRank, computerHandsRank);
             showHand(player);
+
         }
 
         printEndPlayerState();
@@ -75,6 +76,7 @@ public class Game {
         System.out.println("패 보유 상황");
         for(Card card : player.getPlayerHand().getCardList()) {
             System.out.println(num+". 문양 : "+card.getSuit()+" 숫자"+card.getRank());
+            num+=1;
         }
     }
 
